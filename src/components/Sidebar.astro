@@ -9,6 +9,15 @@ const nav = [
   { href: "/policy/disclaimer", label: "Disclaimer" },
   { href: "/about", label: "About" },
 ];
+
+// Base-aware URL helper (works locally + GitHub Pages project sites)
+const base = import.meta.env.BASE_URL; // "/" locally, "/peptipedia/" on Pages
+const withBase = (href) => {
+  const b = base.endsWith("/") ? base : `${base}/`;
+  if (href === "/") return b;
+  const h = href.startsWith("/") ? href.slice(1) : href;
+  return `${b}${h}`;
+};
 ---
 
 <aside class="card" style="padding: 18px; position: sticky; top: 16px; height: fit-content;">
@@ -33,21 +42,20 @@ const nav = [
   </div>
 
   <nav style="display:flex; flex-direction:column; gap:6px;">
-  {nav.map(item => (
-    <a
-      href={Astro.resolve(item.href)}
-      style="
-        padding: 9px 10px;
-        border-radius: 12px;
-        border: 1px solid transparent;
-        color: var(--text);
-      "
-    >
-      {item.label}
-    </a>
-  ))}
-</nav>
-
+    {nav.map(item => (
+      <a
+        href={withBase(item.href)}
+        style="
+          padding: 9px 10px;
+          border-radius: 12px;
+          border: 1px solid transparent;
+          color: var(--text);
+        "
+      >
+        {item.label}
+      </a>
+    ))}
+  </nav>
 
   <hr />
 
@@ -55,15 +63,16 @@ const nav = [
     <b>v1</b> — Static, cited, evidence-graded.
   </div>
 
-  <script>
-    // Lightweight sidebar search (uses /search-index.json)
+  <script define:vars={{ base }}>
+    // Lightweight sidebar search (uses search-index.json)
     const input = document.getElementById("sidebarSearch");
     const results = document.getElementById("sidebarResults");
     let index = null;
 
     async function loadIndex(){
       if(index) return index;
-      const res = await fetch("/search-index.json");
+      const b = base.endsWith("/") ? base : `${base}/`;
+      const res = await fetch(`${b}search-index.json`);
       index = await res.json();
       return index;
     }
