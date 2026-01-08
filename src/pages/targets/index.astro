@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const targets = await getCollection("targets");
+const sorted = targets.sort((a, b) => a.data.name.localeCompare(b.data.name));
+---
+
+<BaseLayout title="Targets • Peptipedia">
+  <div class="prose">
+    <h1>Targets & Mechanisms</h1>
+    <p>Browse molecular targets (receptors, enzymes, pathways) and the mechanisms commonly discussed in peptide research.</p>
+    <hr />
+  </div>
+
+  <div style="display:grid; gap:12px;">
+    {sorted.map((t) => (
+      <a class="card" href={`/targets/${t.slug}`} style="padding:14px; display:block;">
+        <div style="font-weight:800; color:var(--text);">{t.data.name}</div>
+
+        <div style="color:var(--muted); font-size:0.92rem; margin-top: 4px;">
+          {t.data.mechanism_summary ? (
+            <div>{t.data.mechanism_summary}</div>
+          ) : (
+            <div>View mechanism overview and related peptides.</div>
+          )}
+
+          <div style="margin-top:6px;">
+            {t.data.type ? <span class="badge">Type: <b style="color:var(--text)">{t.data.type}</b></span> : null}
+            {t.data.evidence_floor ? <span class="badge" style="margin-left:8px;">Evidence: <b style="color:var(--text)">{t.data.evidence_floor}</b></span> : null}
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

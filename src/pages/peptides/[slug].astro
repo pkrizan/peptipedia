@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const peptides = await getCollection("peptides");
+  return peptides.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const d = entry.data;
+---
+
+<BaseLayout title={`${d.name} • Peptipedia`}>
+  <div class="prose">
+    <h1>{d.name}</h1>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin: 10px 0 18px;">
+      {d.aliases?.length ? <span class="badge">Aliases: <b style="color:var(--text)">{d.aliases.join(", ")}</b></span> : null}
+      {d.evidence_floor ? <span class="badge">Evidence floor: <b style="color:var(--text)">{d.evidence_floor}</b></span> : null}
+      {d.classes?.length ? <span class="badge">Classes: <b style="color:var(--text)">{d.classes.join(", ")}</b></span> : null}
+      {d.targets?.length ? <span class="badge">Targets: <b style="color:var(--text)">{d.targets.join(", ")}</b></span> : null}
+    </div>
+
+    <Content />
+  </div>
+</BaseLayout>

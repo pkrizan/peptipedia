@@ -1,0 +1,70 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span>
+        © {year} <strong>Peptipedia</strong>. All rights reserved.
+      </span>
+      <span class="footer-note">
+        Content may be quoted with attribution for non-commercial purposes.
+      </span>
+    </div>
+
+    <nav class="footer-nav">
+      <a href="/about">About</a>
+      <a href="/policy/editorial">Editorial Policy</a>
+      <a href="/policy/disclaimer">Disclaimer</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 64px;
+    padding: 24px 16px;
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .footer-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .footer-note {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .footer-nav {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-nav a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .footer-nav a:hover {
+    color: var(--text);
+    text-decoration: underline;
+  }
+</style>

@@ -1,0 +1,45 @@
+---
+const { claim, evidence = "in_vitro", confidence = "medium", citations = [] } = Astro.props;
+
+const colors = {
+  human_rct: "var(--human)",
+  human_obs: "var(--human)",
+  case_report: "var(--animal)",
+  animal: "var(--animal)",
+  in_vitro: "var(--invitro)",
+  review: "var(--invitro)",
+  meta_analysis: "var(--human)",
+  anecdotal: "var(--anecdotal)"
+};
+
+const labelMap = {
+  human_rct: "Human (RCT)",
+  human_obs: "Human (Obs.)",
+  case_report: "Case report",
+  animal: "Animal",
+  in_vitro: "In vitro",
+  review: "Review",
+  meta_analysis: "Meta-analysis",
+  anecdotal: "Anecdotal"
+};
+---
+
+<div class="card" style="padding: 14px 14px; margin: 12px 0; border-left: 5px solid {colors[evidence] || 'var(--border)'};">
+  <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom: 8px;">
+    <span class="pill" style="border-color: {colors[evidence]}; color: var(--text);">
+      <span style="display:inline-block;width:10px;height:10px;border-radius:999px;background:{colors[evidence]}; margin-right:8px;"></span>
+      {labelMap[evidence] || evidence}
+    </span>
+    <span class="badge">Confidence: <b style="color:var(--text)">{confidence}</b></span>
+  </div>
+
+  <div style="font-weight:650;">{claim}</div>
+
+  {citations?.length ? (
+    <div style="margin-top:10px; font-size:0.92rem; color: var(--muted);">
+      References: {citations.map((c, i) => (
+        <span>{c}{i < citations.length - 1 ? ", " : ""}</span>
+      ))}
+    </div>
+  ) : null}
+</div>

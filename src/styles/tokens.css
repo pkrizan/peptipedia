@@ -1,0 +1,30 @@
+:root{
+  /* ---- Surfaces / Neutrals (more "reference", less "marketing") ---- */
+  --bg: #F7FAFC;
+  --card: #FFFFFF;
+  --text: #0F172A;
+  --muted: #475569;
+  --border: #D8DEE9;
+
+  /* ---- Brand ---- */
+  --primary: #0B5563;   /* deeper teal */
+  --mint: #7DD3C7;      /* toned-down mint (accent only) */
+
+  /* ---- Evidence palette ---- */
+  --human: #16A34A;      /* green */
+  --animal: #D97706;     /* amber */
+  --invitro: #64748B;    /* slate */
+  --anecdotal: #475569;  /* darker slate */
+
+  /* ---- Shadows / Radius / Layout ---- */
+  --shadow: 0 6px 18px rgba(11, 85, 99, 0.08);
+  --radius: 14px;
+  --radius-sm: 10px;
+
+  --content-max: 760px;
+  --sidebar-w: 280px;
+
+  /* ---- Typography ---- */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "JetBrains Mono", "Liberation Mono", "Courier New", monospace;
+}

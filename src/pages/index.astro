@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Peptipedia">
+  <div class="prose">
+    <h1>Peptipedia</h1>
+    <p><b>An open, evidence-graded knowledge base for peptide research.</b></p>
+    <p>
+      Peptipedia organizes peptides by <b>class</b>, <b>targets</b>, and <b>evidence strength</b>.
+      It is educational and research-oriented — not medical advice.
+    </p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px;">
+      <a class="badge" href="/peptides">Browse peptides →</a>
+      <a class="badge" href="/evidence">How evidence is graded →</a>
+    </div>
+  </div>
+</BaseLayout>

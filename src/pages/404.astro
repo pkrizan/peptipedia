@@ -1,0 +1,51 @@
+---
+export const prerender = true;
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const suggestions = [
+  { label: "Browse peptides", href: "/peptides" },
+  { label: "Browse classes", href: "/classes" },
+  { label: "Targets & mechanisms", href: "/targets" },
+  { label: "About Peptipedia", href: "/about" },
+];
+---
+
+<BaseLayout title="404 • Not Found • Peptipedia">
+  <div class="prose">
+    <h1>404 — Not found</h1>
+    <p>
+      This page doesn’t exist. It may have been renamed, moved, or never survived peer review.
+    </p>
+    <hr />
+  </div>
+
+  <div class="card" style="padding:16px;">
+    <div style="font-weight:800; color:var(--text); font-size:1.05rem;">
+      Quick ways back to science
+    </div>
+
+    <div style="color:var(--muted); margin-top:6px;">
+      Try one of these:
+    </div>
+
+    <div style="display:grid; gap:10px; margin-top:12px;">
+      {suggestions.map((s) => (
+        <a
+          class="card"
+          href={s.href}
+          style="padding:12px; display:flex; align-items:center; justify-content:space-between; text-decoration:none;"
+        >
+          <span style="font-weight:700; color:var(--text);">{s.label}</span>
+          <span style="color:var(--muted);">→</span>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top:18px;">
+    <p style="color:var(--muted); font-size:0.95rem;">
+      Tip: if you expected this page to exist, check for a typo in the URL — or try searching from
+      <a href="/peptides">Peptides</a>.
+    </p>
+  </div>
+</BaseLayout>

@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const targets = await getCollection("targets");
+  return targets.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const d = entry.data;
+
+// Related peptides (match on slug)
+const peptides = await getCollection("peptides");
+const related = peptides
+  .filter((p) => (p.data.targets ?? []).includes(entry.slug))
+  .sort((a, b) => a.data.name.localeCompare(b.data.name));
+---
+
+<BaseLayout title={`${d.name} • Targets • Peptipedia`}>
+  <div class="prose">
+    <h1>{d.name}</h1>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin: 10px 0 18px;">
+      {d.aliases?.length ? <span class="badge">Aliases: <b style="color:var(--text)">{d.aliases.join(", ")}</b></span> : null}
+      {d.type ? <span class="badge">Type: <b style="color:var(--text)">{d.type}</b></span> : null}
+      {d.evidence_floor ? <span class="badge">Evidence floor: <b style="color:var(--text)">{d.evidence_floor}</b></span> : null}
+    </div>
+
+    {d.physiology?.length ? (
+      <>
+        <h2>Physiology (high-level)</h2>
+        <ul>
+          {d.physiology.map((x) => <li>{x}</li>)}
+        </ul>
+      </>
+    ) : null}
+
+    <Content />
+
+    <hr />
+    <h2>Related peptides</h2>
+  </div>
+
+  <div style="display:grid; gap:12px;">
+    {related.length ? related.map((p) => (
+      <a class="card" href={`/peptides/${p.slug}`} style="padding:14px; display:block;">
+        <div style="font-weight:800; color:var(--text);">{p.data.name}</div>
+        <div style="color:var(--muted); font-size:0.92rem; margin-top: 4px;">
+          {p.data.classes?.length ? <div>Classes: <span style="color:var(--text)">{p.data.classes.join(", ")}</span></div> : null}
+          {p.data.evidence_floor ? <div>Evidence: <span style="color:var(--text)">{p.data.evidence_floor}</span></div> : null}
+        </div>
+      </a>
+    )) : (
+      <div class="prose">
+        <p style="color:var(--muted);">No linked peptides yet for this target.</p>
+      </div>
+    )}
+  </div>
+
+  {d.references?.length ? (
+    <div class="prose" style="margin-top: 20px;">
+      <h2>References</h2>
+      <ul>
+        {d.references.map((r) => <li>{r}</li>)}
+      </ul>
+    </div>
+  ) : null}
+</BaseLayout>

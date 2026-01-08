@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const classes = await getCollection("classes");
+  return classes.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+// Load peptides and filter by this class slug
+const peptides = await getCollection("peptides");
+const classSlug = entry.slug;
+
+const inClass = peptides
+  .filter((p) => (p.data.classes || []).includes(classSlug))
+  .sort((a, b) => a.data.name.localeCompare(b.data.name));
+---
+
+<BaseLayout title={`${entry.data.name} • Classes • Peptipedia`}>
+  <div class="prose">
+    <h1>{entry.data.name}</h1>
+
+    {entry.data.description ? <p>{entry.data.description}</p> : null}
+
+    <Content />
+
+    <hr />
+
+    <h2>Peptides in this class</h2>
+    {inClass.length ? (
+      <div style="display:grid; gap:12px; margin-top: 12px;">
+        {inClass.map((p) => (
+          <a class="card" href={`/peptides/${p.slug}`} style="padding:14px; display:block;">
+            <div style="font-weight:800; color:var(--text);">{p.data.name}</div>
+            <div style="color:var(--muted); font-size:0.92rem;">
+              {(p.data.targets || []).length ? `targets: ${(p.data.targets || []).join(", ")}` : "—"}
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p style="color:var(--muted);">
+        No peptides are tagged with <code>{classSlug}</code> yet.
+      </p>
+    )}
+  </div>
+</BaseLayout>

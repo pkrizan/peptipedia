@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const classes = await getCollection("classes");
+const sorted = classes.sort((a, b) => a.data.name.localeCompare(b.data.name));
+---
+
+<BaseLayout title="Classes • Peptipedia">
+  <div class="prose">
+    <h1>Classes</h1>
+    <p>Browse peptides by class.</p>
+    <hr />
+  </div>
+
+  <div style="display:grid; gap:12px;">
+    {sorted.map((entry) => (
+      <a class="card" href={`/classes/${entry.slug}`} style="padding:14px; display:block;">
+        <div style="font-weight:800; color:var(--text);">{entry.data.name}</div>
+        {entry.data.description ? (
+          <div style="color:var(--muted); font-size:0.92rem; margin-top: 4px;">
+            {entry.data.description}
+          </div>
+        ) : null}
+      </a>
+    ))}
+  </div>
+</BaseLayout>
