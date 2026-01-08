@@ -6,5 +6,6 @@ import mdx from "@astrojs/mdx";
 
 export default defineConfig({
   site: "https://pkrizan.github.io",
+  base: "/peptipedia",
   integrations: [mdx()],
 });
