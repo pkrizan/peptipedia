@@ -1,46 +1,75 @@
-# Astro Starter Kit: Basics
+# Peptipedia
 
-```sh
-npm create astro@latest -- --template basics
-```
+**Peptipedia** is an evidence-oriented knowledge base for bioactive peptides, designed to bring structure, clarity, and transparency to a field often dominated by fragmented or anecdotal information.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The project focuses on **mechanisms, evidence quality, and research context**, clearly separating what is supported by human clinical data from what remains preclinical or anecdotal.
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## Why Peptipedia exists
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+While researching peptides ourselves, we were repeatedly frustrated by:
+- scattered sources
+- inconsistent terminology
+- unclear distinctions between animal, observational, and randomized human evidence
+- claims presented without context or hierarchy of proof
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+Peptipedia was created to provide a **systematic, source-aware approach** to peptide information — without marketing hype or medical advice.
 
-## 🧞 Commands
+---
 
-All commands are run from the root of the project, from a terminal:
+## Core principles
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- **Evidence-first**  
+  Claims are tagged by the strongest available evidence.
 
-## 👀 Want to learn more?
+- **Clear separation of fact vs speculation**  
+  Human RCTs, observational data, animal studies, in vitro work, and anecdotal reports are explicitly distinguished.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **Mechanism-aware, not mechanism-only**  
+  Mechanistic hypotheses are included, but never presented as proof of clinical efficacy.
+
+- **No medical advice**  
+  Peptipedia is an educational and research-oriented resource only.
+
+---
+
+## Evidence levels used
+
+Claims are tagged according to the strongest supporting evidence:
+
+- **Human (RCT)** — randomized controlled trials  
+- **Human (Observational)** — cohort, case-control, registries  
+- **Case report** — individual clinical descriptions  
+- **Animal** — in vivo non-human studies  
+- **In vitro** — cell or biochemical studies  
+- **Anecdotal** — self-reported community notes (clearly separated)
+
+---
+
+## Content structure
+
+- `/peptides` — individual peptide profiles  
+- `/classes` — functional and pharmacological classes  
+- `/targets` — receptors, pathways, and mechanisms  
+- `/policy` — editorial standards and disclaimers  
+- `/about` — project background and intent  
+
+Each peptide page includes:
+- overview and mechanism
+- evidence summary
+- safety context
+- research-oriented dosing and study findings (where available)
+- known unknowns and gaps
+
+---
+
+## Tech stack
+
+- **Astro**
+- **MDX**
+- Content collections for structured data
+- Static generation with SSR support
+- GitHub Actions for CI
+
+
