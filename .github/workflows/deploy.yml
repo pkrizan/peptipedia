@@ -18,16 +18,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
+      - uses: actions/checkout@v5
 
-      - name: Install, build, and upload site
-        uses: withastro/action@v5
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-          package-manager: npm@latest
-          # path: .              # uncomment if Astro project is not repo root
-          # build-cmd: npm run build  # only if you need a custom build cmd
+          cache: npm
+
+      - name: Upgrade npm
+        run: npm i -g npm@latest
+
+      # Workaround for npm optional-deps / rollup native module issue:
+      # Use npm install instead of npm ci
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build site
+        run: npm run build
+
+      # Astro’s default output is dist/
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
 
   deploy:
     needs: build
@@ -36,6 +50,5 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
