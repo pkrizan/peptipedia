@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
+const base = (process.env.BASE_URL || "").replace(/\/$/, "");
+
 function walk(dir: string): string[] {
   if (!fs.existsSync(dir)) return [];
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -94,7 +96,7 @@ const index = files.map((f) => {
     classes: fm.classes || [],
     targets: fm.targets || [],
     evidence_floor: fm.evidence_floor || null,
-    url: `/peptides/${slug}`,
+    url: `${base}/peptides/${slug}`,
   };
 });
 
