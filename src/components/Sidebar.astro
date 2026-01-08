@@ -35,7 +35,7 @@ const nav = [
   <nav style="display:flex; flex-direction:column; gap:6px;">
   {nav.map(item => (
     <a
-      href={`${import.meta.env.BASE_URL.replace(/\/?$/, "/")}${item.href.replace(/^\//, "")}`}
+      href={Astro.resolve(item.href)}
       style="
         padding: 9px 10px;
         border-radius: 12px;
