@@ -11,6 +11,9 @@
     "@astrojs/mdx": "^4.3.13",
     "astro": "^5.16.6"
   },
+  "optionalDependencies":  {  
+    "@rollup/rollup-linux-arm64-gnu": "^4.0.0"  
+  },
   "devDependencies": {
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
