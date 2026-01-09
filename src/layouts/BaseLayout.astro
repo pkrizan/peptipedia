@@ -3,7 +3,10 @@ import "../styles/global.css";
 import Sidebar from "../components/Sidebar.astro";
 import Footer from "../components/Footer.astro";
 
-const { title = "Peptipedia", description = "An evidence-graded knowledge base for peptide research." } = Astro.props;
+const {
+  title = "Peptipedia",
+  description = "An evidence-graded knowledge base for peptide research.",
+} = Astro.props;
 ---
 
 <html lang="en">
@@ -15,21 +18,20 @@ const { title = "Peptipedia", description = "An evidence-graded knowledge base f
   </head>
   <body>
     <div class="container">
-      <div class="container">
-  <div class="sidebarWrap">
-    <details class="sidebarDetails">
-      <summary class="sidebarSummary">Menu</summary>
-      <Sidebar />
-    </details>
-  </div>
+      <div class="sidebarWrap">
+        <details class="sidebarDetails">
+          <summary class="sidebarSummary">Menu</summary>
+          <Sidebar />
+        </details>
+      </div>
 
-  <main class="main">
-    <div class="content card" style="padding: 22px;">
-      <slot />
+      <main class="main">
+        <div class="content card" style="padding: 22px;">
+          <slot />
+        </div>
+      </main>
     </div>
-  </main>
-</div>
-    </div>
+
     <Footer />
   </body>
 </html>
