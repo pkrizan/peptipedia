@@ -19,10 +19,24 @@ const {
   <body>
     <div class="container">
       <div class="sidebarWrap">
-        <details class="sidebarDetails">
+        <details class="sidebarDetails" open>
           <summary class="sidebarSummary">Menu</summary>
           <Sidebar />
         </details>
+<script>
+  // Keep sidebar open on desktop, collapsible on mobile
+  const d = document.querySelector(".sidebarDetails");
+  const mq = window.matchMedia("(max-width: 980px)");
+
+  function sync() {
+    if (!d) return;
+    if (mq.matches) d.removeAttribute("open");
+    else d.setAttribute("open", "");
+  }
+
+  sync();
+  mq.addEventListener?.("change", sync);
+</script>
       </div>
 
       <main class="main">
