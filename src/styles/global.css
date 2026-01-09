@@ -166,3 +166,39 @@ hr{
   font-size: 0.95rem;
 }
 .callout strong{ color: var(--text); }
+
+/* Sidebar collapsible wrapper */
+.sidebarSummary { display: none; }
+.sidebarDetails { border: 0; }
+
+/* Desktop: show sidebar normally */
+@media (min-width: 981px){
+  .sidebarDetails { display: contents; } /* removes the <details> wrapper in layout flow */
+}
+
+/* Mobile: collapse sidebar into a "Menu" toggle */
+@media (max-width: 980px){
+  .sidebarDetails { display: block; }
+
+  .sidebarSummary{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--card);
+    color: var(--text);
+    font-weight: 800;
+
+    margin-bottom: 12px;
+  }
+
+  /* Optional: make the menu feel nicer when open */
+  .sidebarDetails[open] .sidebarSummary{
+    margin-bottom: 10px;
+  }
+}
+

@@ -15,12 +15,20 @@ const { title = "Peptipedia", description = "An evidence-graded knowledge base f
   </head>
   <body>
     <div class="container">
+      <div class="container">
+  <div class="sidebarWrap">
+    <details class="sidebarDetails">
+      <summary class="sidebarSummary">Menu</summary>
       <Sidebar />
-      <main class="main">
-        <div class="content card" style="padding: 22px;">
-          <slot />
-        </div>
-      </main>
+    </details>
+  </div>
+
+  <main class="main">
+    <div class="content card" style="padding: 22px;">
+      <slot />
+    </div>
+  </main>
+</div>
     </div>
     <Footer />
   </body>
