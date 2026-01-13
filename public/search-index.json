@@ -1,1 +1,135 @@
-[]
+[
+  {
+    "type": "peptide",
+    "name": "BPC-157",
+    "slug": "BPC-157",
+    "aliases": [
+      "Body Protection Compound 157"
+    ],
+    "classes": [
+      "tissue-repair-peptides"
+    ],
+    "targets": [],
+    "evidence_floor": "animal",
+    "url": "/peptides/BPC-157"
+  },
+  {
+    "type": "peptide",
+    "name": "_template",
+    "slug": "_template",
+    "aliases": [],
+    "classes": [],
+    "targets": [],
+    "evidence_floor": null,
+    "url": "/peptides/_template"
+  },
+  {
+    "type": "peptide",
+    "name": "Cagrilintide",
+    "slug": "cagrilintide",
+    "aliases": [
+      "AM833"
+    ],
+    "classes": [
+      "amylin-analogues"
+    ],
+    "targets": [
+      "amylin-receptor"
+    ],
+    "evidence_floor": "human_rct",
+    "url": "/peptides/cagrilintide"
+  },
+  {
+    "type": "peptide",
+    "name": "Retatrutide",
+    "slug": "retatrutide",
+    "aliases": [
+      "LY3437943"
+    ],
+    "classes": [
+      "glp-1-receptor-agonists",
+      "gip-receptor-agonists",
+      "glucagon-receptor-agonists"
+    ],
+    "targets": [
+      "glp-1r",
+      "gipr",
+      "gcgr"
+    ],
+    "evidence_floor": "human_rct",
+    "url": "/peptides/retatrutide"
+  },
+  {
+    "type": "peptide",
+    "name": "Semaglutide",
+    "slug": "semaglutide",
+    "aliases": [
+      "Ozempic",
+      "Wegovy",
+      "Rybelsus"
+    ],
+    "classes": [
+      "glp-1-receptor-agonists"
+    ],
+    "targets": [
+      "glp-1r"
+    ],
+    "evidence_floor": "human_rct",
+    "url": "/peptides/semaglutide"
+  },
+  {
+    "type": "peptide",
+    "name": "Tesamorelin",
+    "slug": "tesamorelin",
+    "aliases": [
+      "EGRIFTA",
+      "EGRIFTA SV",
+      "EGRIFTA WR",
+      "TH9507"
+    ],
+    "classes": [
+      "ghrh-analogues"
+    ],
+    "targets": [
+      "ghrh-receptor"
+    ],
+    "evidence_floor": "human_rct",
+    "url": "/peptides/tesamorelin"
+  },
+  {
+    "type": "peptide",
+    "name": "Thymosin alpha-1",
+    "slug": "thymosin-alpha-1",
+    "aliases": [
+      "Tα1",
+      "Thymalfasin"
+    ],
+    "classes": [
+      "immune-modulating-peptides"
+    ],
+    "targets": [
+      "toll-like-receptors"
+    ],
+    "evidence_floor": "human_rct",
+    "url": "/peptides/thymosin-alpha-1"
+  },
+  {
+    "type": "peptide",
+    "name": "Tirzepatide",
+    "slug": "tirzepatide",
+    "aliases": [
+      "Mounjaro",
+      "Zepbound"
+    ],
+    "classes": [
+      "glp-1-receptor-agonists",
+      "gip-receptor-agonists"
+    ],
+    "targets": [
+      "glp-1r",
+      "gipr"
+    ],
+    "evidence_floor": "human_rct",
+    "url": "/peptides/tirzepatide"
+  }
+]

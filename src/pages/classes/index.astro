@@ -4,6 +4,9 @@ import { getCollection } from "astro:content";
 
 const classes = await getCollection("classes");
 const sorted = classes.sort((a, b) => a.data.name.localeCompare(b.data.name));
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith("/") ? rawBase : `${rawBase}/`;
 ---
 
 <BaseLayout title="Classes • Peptipedia">
@@ -15,8 +18,13 @@ const sorted = classes.sort((a, b) => a.data.name.localeCompare(b.data.name));
 
   <div style="display:grid; gap:12px;">
     {sorted.map((entry) => (
-      <a class="card" href={`/classes/${entry.slug}`} style="padding:14px; display:block;">
+      <a
+        class="card"
+        href={`${base}classes/${entry.slug}`}
+        style="padding:14px; display:block;"
+      >
         <div style="font-weight:800; color:var(--text);">{entry.data.name}</div>
+
         {entry.data.description ? (
           <div style="color:var(--muted); font-size:0.92rem; margin-top: 4px;">
             {entry.data.description}

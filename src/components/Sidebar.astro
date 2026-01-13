@@ -1,6 +1,12 @@
 ---
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith("/") ? rawBase : `${rawBase}/`;
+
+const withBase = (path = "") =>
+  `${base}${String(path).replace(/^\//, "")}`;
+
 const nav = [
-  { href: "/", label: "Home" },
+  { href: "", label: "Home" },
   { href: "/peptides", label: "Peptides" },
   { href: "/classes", label: "Classes" },
   { href: "/targets", label: "Targets & Mechanisms" },
@@ -9,15 +15,6 @@ const nav = [
   { href: "/policy/disclaimer", label: "Disclaimer" },
   { href: "/about", label: "About" },
 ];
-
-// Base-aware URL helper (works locally + GitHub Pages project sites)
-const base = import.meta.env.BASE_URL; // "/" locally, "/peptipedia/" on Pages
-const withBase = (href) => {
-  const b = base.endsWith("/") ? base : `${base}/`;
-  if (href === "/") return b;
-  const h = href.startsWith("/") ? href.slice(1) : href;
-  return `${b}${h}`;
-};
 ---
 
 <aside class="card" style="padding: 18px; position: sticky; top: 16px; height: fit-content;">
@@ -77,6 +74,15 @@ const withBase = (href) => {
       return index;
     }
 
+    function toBaseUrl(url){
+      // If already absolute (http...) or already includes the base, keep it.
+      if(/^https?:\/\//.test(url)) return url;
+      const b = base.endsWith("/") ? base : `${base}/`;
+      const u = String(url || "");
+      if(u.startsWith(b)) return u;
+      return `${b}${u.replace(/^\//, "")}`;
+    }
+
     function render(items){
       if(!items.length){
         results.style.display = "block";
@@ -85,7 +91,7 @@ const withBase = (href) => {
       }
       results.style.display = "block";
       results.innerHTML = items.slice(0,6).map(x => `
-        <a href="${x.url}" style="display:block; padding:8px 10px; border-radius:12px; border:1px solid var(--border); margin-bottom:6px;">
+        <a href="${toBaseUrl(x.url)}" style="display:block; padding:8px 10px; border-radius:12px; border:1px solid var(--border); margin-bottom:6px;">
           <div style="font-weight:700; color: var(--text);">${x.name}</div>
           <div style="font-size:0.85rem; color: var(--muted);">${(x.classes||[]).join(", ")}</div>
         </a>

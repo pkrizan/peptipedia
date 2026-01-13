@@ -2,11 +2,14 @@
 export const prerender = true;
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith("/") ? rawBase : `${rawBase}/`;
+
 const suggestions = [
-  { label: "Browse peptides", href: "/peptides" },
-  { label: "Browse classes", href: "/classes" },
-  { label: "Targets & mechanisms", href: "/targets" },
-  { label: "About Peptipedia", href: "/about" },
+  { label: "Browse peptides", href: `${base}peptides/` },
+  { label: "Browse classes", href: `${base}classes/` },
+  { label: "Targets & mechanisms", href: `${base}targets/` },
+  { label: "About Peptipedia", href: `${base}about/` },
 ];
 ---
 
@@ -45,7 +48,7 @@ const suggestions = [
   <div class="prose" style="margin-top:18px;">
     <p style="color:var(--muted); font-size:0.95rem;">
       Tip: if you expected this page to exist, check for a typo in the URL — or try searching from
-      <a href="/peptides">Peptides</a>.
+      <a href={`${base}peptides/`}>Peptides</a>.
     </p>
   </div>
 </BaseLayout>

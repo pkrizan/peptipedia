@@ -1,5 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith("/") ? rawBase : `${rawBase}/`;
 ---
 
 <BaseLayout title="Peptipedia">
@@ -11,8 +14,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       It is educational and research-oriented — not medical advice.
     </p>
     <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px;">
-      <a class="badge" href="/peptides">Browse peptides →</a>
-      <a class="badge" href="/evidence">How evidence is graded →</a>
+      <a class="badge" href={`${base}peptides`}>Browse peptides →</a>
+      <a class="badge" href={`${base}evidence`}>How evidence is graded →</a>
     </div>
   </div>
 </BaseLayout>
